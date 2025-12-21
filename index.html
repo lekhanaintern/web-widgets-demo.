@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Widgets</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>Web Widgets Demo</h1>
+
+<!-- 1. Calendar Widget -->
+<section class="widget">
+  <h2>Calendar Widget</h2>
+  <input type="date">
+</section>
+
+<!-- 2. Dropdown Widget -->
+<section class="widget">
+  <h2>Dropdown Widget</h2>
+  <select>
+    <option>Select Role</option>
+    <option>Web Developer</option>
+    <option>Data Analyst</option>
+    <option>ML Engineer</option>
+  </select>
+</section>
+
+<!-- 3. Radio Button Widget -->
+<section class="widget">
+  <h2>Radio Button Widget</h2>
+  <label><input type="radio" name="gender"> Male</label>
+  <label><input type="radio" name="gender"> Female</label>
+</section>
+
+<!-- 4. Checkbox Widget -->
+<section class="widget">
+  <h2>Checkbox Widget</h2>
+  <label><input type="checkbox"> HTML</label>
+  <label><input type="checkbox"> CSS</label>
+  <label><input type="checkbox"> JavaScript</label>
+</section>
+
+<!-- 5. Table Widget -->
+<section class="widget">
+  <h2>Table Widget</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+    </tr>
+    <tr>
+      <td>Lekhana</td>
+      <td>Web Developer</td>
+    </tr>
+    <tr>
+      <td>Alex</td>
+      <td>Designer</td>
+    </tr>
+  </table>
+</section>
+
+<!-- 6. Flexbox Widget -->
+<section class="widget">
+  <h2>Flexbox Widget</h2>
+  <div class="flex-box">
+    <div class="flex-item">Box 1</div>
+    <div class="flex-item">Box 2</div>
+    <div class="flex-item">Box 3</div>
+  </div>
+</section>
+
+<!-- 7. Card Widget -->
+<section class="widget">
+  <h2>Card Widget</h2>
+  <div class="card">
+    <h3>Resume Builder</h3>
+    <p>Build ATS-friendly resumes easily.</p>
+  </div>
+</section>
+
+<!-- 8. Form/Input Widgets Section -->
+<section class="widget">
+  <h2>Form / Input Widgets</h2>
+
+  <label>Text Input:</label>
+  <input type="text" placeholder="Enter your name">
+
+  <label>Password Input:</label>
+  <input type="password" placeholder="Enter password">
+
+  <label>Email Input:</label>
+  <input type="email" placeholder="Enter email">
+
+  <label>Number Input:</label>
+  <input type="number" placeholder="Enter number">
+
+  <label>Textarea:</label>
+  <textarea placeholder="Enter description"></textarea>
+
+  <label>File Upload:</label>
+  <input type="file">
+
+  <label>Range Slider:</label>
+  <input type="range" min="0" max="100" value="50" id="rangeSlider">
+  <span id="rangeValue">50</span>
+
+  <label>Search Box:</label>
+  <input type="search" placeholder="Search here">
+
+</section>
+
+<!-- 9. Action & Button Widgets -->
+<section class="widget">
+  <h2>Action & Button Widgets</h2>
+
+  <!-- Normal Button -->
+  <button class="btn-primary">Click Me</button>
+
+  <!-- Icon Button -->
+  <button class="btn-icon"><span>🔔</span> Notify</button>
+
+  <!-- Toggle Switch -->
+  <label class="switch">
+    <input type="checkbox" id="toggleSwitch">
+    <span class="slider round"></span>
+  </label>
+  <span id="toggleStatus">OFF</span>
+
+  <!-- Submit / Reset Form -->
+  <form id="demoForm">
+    <input type="text" placeholder="Enter something" required>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+
+  <!-- Alert / Message Box -->
+  <div id="alertBox" class="alert-box">
+    <span id="alertMessage">This is an alert message!</span>
+    <button id="closeAlert">X</button>
+  </div>
+
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
