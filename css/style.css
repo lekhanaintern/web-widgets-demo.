@@ -1,158 +1,827 @@
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
 }
 
-h1 {
-  text-align: center;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
-.widget {
-  background: white;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 5px;
+/* ===== HEADER ===== */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
 }
 
-/* Inputs & Textarea */
-input, textarea, select {
-  padding: 8px;
-  width: 250px;
-  margin: 5px 0 15px 0;
-  display: block;
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-textarea {
-  height: 80px;
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
-label {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
+/* ===== WIDGET SECTIONS ===== */
+.widget-section {
+    padding: 40px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-/* Table */
+.widget-section:last-of-type {
+    border-bottom: none;
+}
+
+.widget-header h2 {
+    color: #667eea;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.widget-content {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* ===== OUTPUT MESSAGES ===== */
+.output {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    border-radius: 5px;
+    color: #1976d2;
+    font-weight: 500;
+}
+
+/* ===== WIDGET 1: CALENDAR ===== */
+.calendar-input {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.calendar-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* ===== WIDGET 2: DROPDOWN ===== */
+.dropdown {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.dropdown:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* ===== WIDGET 3: RADIO BUTTONS ===== */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.radio-label:hover {
+    background-color: #e8eaf6;
+}
+
+.radio-label input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+/* ===== WIDGET 4: CHECKBOXES ===== */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.checkbox-label:hover {
+    background-color: #e8eaf6;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+/* ===== WIDGET 5: TABLE ===== */
+.table-container {
+    overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
 }
 
-table, th, td {
-  border: 1px solid #ccc;
+thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-th, td {
-  padding: 8px;
-  text-align: left;
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
 }
 
-/* Flexbox */
+th:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr {
+    transition: background-color 0.3s;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* ===== WIDGET 6: FLEXBOX ===== */
+.flexbox-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .flex-box {
-  display: flex;
-  gap: 10px;
+    flex: 1;
+    min-width: 200px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
 }
 
-.flex-item {
-  background: #0d6efd;
-  color: white;
-  padding: 15px;
-  flex: 1;
-  text-align: center;
+.flex-box:hover {
+    transform: translateY(-5px);
 }
 
-/* Card */
+.box-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.box-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.box-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.box-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+
+/* ===== WIDGET 7: CARDS ===== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
 .card {
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 5px;
-  width: 250px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
 }
 
-/* Range slider value */
-#rangeValue {
-  margin-left: 10px;
-  font-weight: bold;
-}
-/* Buttons */
-.btn-primary {
-  padding: 10px 15px;
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-}
-.btn-primary:hover {
-  background-color: #084298;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-/* Icon Button */
-.btn-icon {
-  padding: 8px 12px;
-  border: 1px solid #0d6efd;
-  background: white;
-  color: #0d6efd;
-  cursor: pointer;
-  margin-right: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-.btn-icon:hover {
-  background-color: #0d6efd;
-  color: white;
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-/* Toggle Switch */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 25px;
-  margin-right: 10px;
+.card-header-2 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
-.switch input { display: none; }
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 25px;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 19px;
-  width: 19px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-input:checked + .slider { background-color: #0d6efd; }
-input:checked + .slider:before { transform: translateX(25px); }
 
-/* Alert Box */
-.alert-box {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f8d7da;
-  color: #842029;
-  border: 1px solid #f5c2c7;
-  border-radius: 5px;
-  position: relative;
-  width: 300px;
+.card-header-3 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
-.alert-box button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border: none;
-  background: transparent;
-  font-weight: bold;
-  cursor: pointer;
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    color: #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.card-header-2 .avatar {
+    color: #f5576c;
+}
+
+.card-header-3 .avatar {
+    color: #00f2fe;
+}
+
+.card-title h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.card-body p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.card-footer {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    display: flex;
+    gap: 10px;
+}
+
+.card-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card-btn:hover {
+    background: #5568d3;
+}
+
+.card-btn.secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.card-btn.secondary:hover {
+    background: #d0d0d0;
+}
+
+/* ===== WIDGET 8: FORM INPUTS ===== */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-input {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-range {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.submit-btn {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== WIDGET 9: ACCORDION ===== */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.accordion-item {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.accordion-header:hover {
+    background-color: #f5f5f5;
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+    transition: transform 0.3s;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background: #f8f9fa;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 500px;
+    padding: 20px;
+}
+
+.accordion-content p {
+    line-height: 1.6;
+    color: #666;
+}
+
+/* ===== WIDGET 10: TABS ===== */
+.tabs {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tab-buttons {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+}
+
+.tab-button:hover {
+    background-color: #e8eaf6;
+}
+
+.tab-button.active {
+    color: #667eea;
+    background: white;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #667eea;
+}
+
+.tab-content {
+    background: white;
+}
+
+.tab-panel {
+    display: none;
+    padding: 30px;
+    animation: fadeIn 0.3s;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-panel h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.tab-panel p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.tab-panel ul {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== WIDGET 11: SEARCHABLE TABLE ===== */
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status.active {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.status.inactive {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ===== WIDGET 12: CAROUSEL ===== */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px;
+    position: relative;
+}
+
+.slide-text {
+    max-width: 700px;
+    color: white;
+    z-index: 2;
+}
+
+.slide-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slide-text p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Slide Background Colors */
+.slide-1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.slide-2 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.slide-3 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.slide-4 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.slide-5 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 10;
+    font-weight: bold;
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Indicator Dots */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.3);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #f8f9fa;
+    padding: 30px;
+    text-align: center;
+    color: #666;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .widget-section {
+        padding: 20px;
+    }
+    
+    .widget-content {
+        padding: 20px;
+    }
+    
+    .flexbox-container {
+        flex-direction: column;
+    }
+    
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Carousel responsive */
+    .carousel {
+        height: 300px;
+    }
+    
+    .carousel-content {
+        padding: 30px 20px;
+    }
+    
+    .slide-text h3 {
+        font-size: 1.8rem;
+    }
+    
+    .slide-text p {
+        font-size: 1rem;
+    }
+    
+    .carousel-btn {
+        padding: 10px 15px;
+        font-size: 1.5rem;
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+}
+
+/* ===== LABELS ===== */
+label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
 }

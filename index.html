@@ -1,147 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Web Widgets</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive UI Widgets Showcase</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>🎨 Interactive UI Widgets Showcase</h1>
+            <p class="subtitle">A comprehensive collection of common web UI components</p>
+        </header>
 
-<h1>Web Widgets Demo</h1>
+        <!-- Widget 1: Calendar Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>📅 1. Calendar Widget</h2>
+                <p class="description">Pick a date from an interactive calendar. Useful for booking systems, event planning, and date selection.</p>
+            </div>
+            <div class="widget-content">
+                <label for="calendar-input">Select a Date:</label>
+                <input type="date" id="calendar-input" class="calendar-input">
+                <p class="output" id="calendar-output">No date selected yet</p>
+            </div>
+        </section>
 
-<!-- 1. Calendar Widget -->
-<section class="widget">
-  <h2>Calendar Widget</h2>
-  <input type="date">
-</section>
+        <!-- Widget 2: Dropdown Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>📋 2. Dropdown Widget</h2>
+                <p class="description">Select one option from a list. Perfect for role selection, categories, or any single-choice selection.</p>
+            </div>
+            <div class="widget-content">
+                <label for="role-dropdown">Choose Your Role:</label>
+                <select id="role-dropdown" class="dropdown">
+                    <option value="">-- Select a Role --</option>
+                    <option value="Frontend Developer">Frontend Developer</option>
+                    <option value="Backend Developer">Backend Developer</option>
+                    <option value="Full Stack Developer">Full Stack Developer</option>
+                    <option value="UI/UX Designer">UI/UX Designer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="DevOps Engineer">DevOps Engineer</option>
+                    <option value="Product Manager">Product Manager</option>
+                </select>
+                <p class="output" id="dropdown-output">No role selected</p>
+            </div>
+        </section>
 
-<!-- 2. Dropdown Widget -->
-<section class="widget">
-  <h2>Dropdown Widget</h2>
-  <select>
-    <option>Select Role</option>
-    <option>Web Developer</option>
-    <option>Data Analyst</option>
-    <option>ML Engineer</option>
-  </select>
-</section>
+        <!-- Widget 3: Radio Button Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>🔘 3. Radio Button Widget</h2>
+                <p class="description">Choose one option from multiple choices. Only one radio button can be selected at a time.</p>
+            </div>
+            <div class="widget-content">
+                <label>Select Gender:</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="Male"> Male
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="Female"> Female
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="Non-Binary"> Non-Binary
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="Prefer not to say"> Prefer not to say
+                    </label>
+                </div>
+                <p class="output" id="radio-output">No gender selected</p>
+            </div>
+        </section>
 
-<!-- 3. Radio Button Widget -->
-<section class="widget">
-  <h2>Radio Button Widget</h2>
-  <label><input type="radio" name="gender"> Male</label>
-  <label><input type="radio" name="gender"> Female</label>
-</section>
+        <!-- Widget 4: Checkbox Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>☑️ 4. Checkbox Widget</h2>
+                <p class="description">Select multiple options simultaneously. Great for skills, interests, or multi-choice selections.</p>
+            </div>
+            <div class="widget-content">
+                <label>Select Your Skills:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="HTML"> HTML
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="CSS"> CSS
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="JavaScript"> JavaScript
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="React"> React
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="Node.js"> Node.js
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="Python"> Python
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skills" value="SQL"> SQL
+                    </label>
+                </div>
+                <p class="output" id="checkbox-output">No skills selected</p>
+            </div>
+        </section>
 
-<!-- 4. Checkbox Widget -->
-<section class="widget">
-  <h2>Checkbox Widget</h2>
-  <label><input type="checkbox"> HTML</label>
-  <label><input type="checkbox"> CSS</label>
-  <label><input type="checkbox"> JavaScript</label>
-</section>
+        <!-- Widget 5: MERGED Searchable & Sortable Table -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>📊 5. Advanced Data Table (Searchable & Sortable)</h2>
+                <p class="description">Search and sort employee data in real-time. Type to filter results, click column headers to sort ascending/descending.</p>
+            </div>
+            <div class="widget-content">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="table-search-input" placeholder="🔍 Search by name, role, experience, salary, department, location, or status..." class="search-input">
+                </div>
+                
+                <!-- Combined Table -->
+                <div class="table-container">
+                    <table id="advanced-table">
+                        <thead>
+                            <tr>
+                                <th data-column="name" data-type="string">Name ⇅</th>
+                                <th data-column="role" data-type="string">Role ⇅</th>
+                                <th data-column="experience" data-type="number">Experience (years) ⇅</th>
+                                <th data-column="salary" data-type="currency">Salary ⇅</th>
+                                <th data-column="department" data-type="string">Department ⇅</th>
+                                <th data-column="location" data-type="string">Location ⇅</th>
+                                <th data-column="status" data-type="string">Status ⇅</th>
+                            </tr>
+                        </thead>
+                        <tbody id="advanced-table-body">
+                            <tr><td>Alice Johnson</td><td>Frontend Developer</td><td>5</td><td>$85,000</td><td>Engineering</td><td>New York</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Bob Smith</td><td>Backend Developer</td><td>7</td><td>$95,000</td><td>Engineering</td><td>Boston</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Carol Williams</td><td>UI/UX Designer</td><td>4</td><td>$75,000</td><td>Design</td><td>San Francisco</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>David Brown</td><td>Full Stack Developer</td><td>6</td><td>$100,000</td><td>Engineering</td><td>Seattle</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Emma Davis</td><td>Data Scientist</td><td>3</td><td>$90,000</td><td>Data Analytics</td><td>Austin</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Frank Miller</td><td>DevOps Engineer</td><td>8</td><td>$105,000</td><td>Operations</td><td>Denver</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Grace Lee</td><td>Product Manager</td><td>9</td><td>$120,000</td><td>Product</td><td>Los Angeles</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Henry Wilson</td><td>Backend Developer</td><td>5</td><td>$88,000</td><td>Engineering</td><td>Chicago</td><td><span class="status inactive">Inactive</span></td></tr>
+                            <tr><td>Isabella Martinez</td><td>Frontend Developer</td><td>4</td><td>$82,000</td><td>Engineering</td><td>Miami</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Jack Anderson</td><td>Mobile Developer</td><td>6</td><td>$92,000</td><td>Engineering</td><td>Portland</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Kelly Taylor</td><td>QA Engineer</td><td>3</td><td>$70,000</td><td>Quality Assurance</td><td>Phoenix</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Liam Thomas</td><td>Data Analyst</td><td>2</td><td>$65,000</td><td>Data Analytics</td><td>San Diego</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Mia Garcia</td><td>System Administrator</td><td>7</td><td>$85,000</td><td>IT</td><td>Atlanta</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Noah Rodriguez</td><td>Security Engineer</td><td>8</td><td>$110,000</td><td>Security</td><td>Nashville</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Olivia Hernandez</td><td>Cloud Architect</td><td>10</td><td>$140,000</td><td>Cloud Services</td><td>Dallas</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Peter Lopez</td><td>Scrum Master</td><td>5</td><td>$95,000</td><td>Project Management</td><td>Houston</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Quinn Gonzalez</td><td>Business Analyst</td><td>4</td><td>$78,000</td><td>Business</td><td>Philadelphia</td><td><span class="status inactive">Inactive</span></td></tr>
+                            <tr><td>Rachel Perez</td><td>Technical Writer</td><td>3</td><td>$68,000</td><td>Documentation</td><td>Detroit</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Samuel Turner</td><td>Database Administrator</td><td>6</td><td>$87,000</td><td>IT</td><td>Minneapolis</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Tiffany White</td><td>Network Engineer</td><td>7</td><td>$93,000</td><td>IT</td><td>Tampa</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Ursula Harris</td><td>AI Engineer</td><td>5</td><td>$115,000</td><td>AI/ML</td><td>Orlando</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Victor Clark</td><td>Machine Learning Engineer</td><td>6</td><td>$125,000</td><td>AI/ML</td><td>Charlotte</td><td><span class="status inactive">Inactive</span></td></tr>
+                            <tr><td>Wendy Lewis</td><td>Site Reliability Engineer</td><td>8</td><td>$112,000</td><td>Operations</td><td>Indianapolis</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Xavier Walker</td><td>Solutions Architect</td><td>9</td><td>$130,000</td><td>Architecture</td><td>Columbus</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Yara Hall</td><td>Technical Lead</td><td>11</td><td>$145,000</td><td>Engineering</td><td>San Jose</td><td><span class="status active">Active</span></td></tr>
+                            <tr><td>Zachary Allen</td><td>Engineering Manager</td><td>12</td><td>$155,000</td><td>Management</td><td>Jacksonville</td><td><span class="status active">Active</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="output" id="table-output">Showing all 26 employees</p>
+            </div>
+        </section>
 
-<!-- 5. Table Widget -->
-<section class="widget">
-  <h2>Table Widget</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Role</th>
-    </tr>
-    <tr>
-      <td>Lekhana</td>
-      <td>Web Developer</td>
-    </tr>
-    <tr>
-      <td>Alex</td>
-      <td>Designer</td>
-    </tr>
-  </table>
-</section>
+        <!-- Widget 6: Flexbox Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>📦 6. Flexbox Layout</h2>
+                <p class="description">Flexibly arrange elements in rows or columns. Automatically adjusts spacing and alignment.</p>
+            </div>
+            <div class="widget-content">
+                <div class="flexbox-container">
+                    <div class="flex-box box-1">Box 1</div>
+                    <div class="flex-box box-2">Box 2</div>
+                    <div class="flex-box box-3">Box 3</div>
+                    <div class="flex-box box-4">Box 4</div>
+                </div>
+            </div>
+        </section>
 
-<!-- 6. Flexbox Widget -->
-<section class="widget">
-  <h2>Flexbox Widget</h2>
-  <div class="flex-box">
-    <div class="flex-item">Box 1</div>
-    <div class="flex-item">Box 2</div>
-    <div class="flex-item">Box 3</div>
-  </div>
-</section>
+        <!-- Widget 7: Card Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>💼 7. Resume Card Widget</h2>
+                <p class="description">Display summarized information in an attractive card format. Perfect for profiles, summaries, and highlights.</p>
+            </div>
+            <div class="widget-content">
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="avatar">JD</div>
+                            <div class="card-title">
+                                <h3>John Doe</h3>
+                                <p class="card-subtitle">Senior Full Stack Developer</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>📧 Email:</strong> john.doe@example.com</p>
+                            <p><strong>📱 Phone:</strong> +1 (555) 123-4567</p>
+                            <p><strong>📍 Location:</strong> San Francisco, CA</p>
+                            <p><strong>💼 Experience:</strong> 8 years</p>
+                            <p><strong>🎯 Skills:</strong> React, Node.js, Python, AWS, Docker</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="card-btn">View Full Resume</button>
+                            <button class="card-btn secondary">Contact</button>
+                        </div>
+                    </div>
 
-<!-- 7. Card Widget -->
-<section class="widget">
-  <h2>Card Widget</h2>
-  <div class="card">
-    <h3>Resume Builder</h3>
-    <p>Build ATS-friendly resumes easily.</p>
-  </div>
-</section>
+                    <div class="card">
+                        <div class="card-header card-header-2">
+                            <div class="avatar">SM</div>
+                            <div class="card-title">
+                                <h3>Sarah Miller</h3>
+                                <p class="card-subtitle">UI/UX Designer</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>📧 Email:</strong> sarah.miller@example.com</p>
+                            <p><strong>📱 Phone:</strong> +1 (555) 234-5678</p>
+                            <p><strong>📍 Location:</strong> New York, NY</p>
+                            <p><strong>💼 Experience:</strong> 6 years</p>
+                            <p><strong>🎯 Skills:</strong> Figma, Adobe XD, Sketch, Prototyping</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="card-btn">View Full Resume</button>
+                            <button class="card-btn secondary">Contact</button>
+                        </div>
+                    </div>
 
-<!-- 8. Form/Input Widgets Section -->
-<section class="widget">
-  <h2>Form / Input Widgets</h2>
+                    <div class="card">
+                        <div class="card-header card-header-3">
+                            <div class="avatar">RK</div>
+                            <div class="card-title">
+                                <h3>Raj Kumar</h3>
+                                <p class="card-subtitle">Data Scientist</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>📧 Email:</strong> raj.kumar@example.com</p>
+                            <p><strong>📱 Phone:</strong> +1 (555) 345-6789</p>
+                            <p><strong>📍 Location:</strong> Seattle, WA</p>
+                            <p><strong>💼 Experience:</strong> 5 years</p>
+                            <p><strong>🎯 Skills:</strong> Python, TensorFlow, SQL, R, Tableau</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="card-btn">View Full Resume</button>
+                            <button class="card-btn secondary">Contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <label>Text Input:</label>
-  <input type="text" placeholder="Enter your name">
+        <!-- Widget 8: Form/Input Widgets -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>📝 8. Form & Input Widgets</h2>
+                <p class="description">Various input types for collecting different kinds of data from users.</p>
+            </div>
+            <div class="widget-content">
+                <div id="user-form" class="form">
+                    <div class="form-group">
+                        <label for="text-input">Text Input:</label>
+                        <input type="text" id="text-input" placeholder="Enter your full name" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email-input">Email Input:</label>
+                        <input type="email" id="email-input" placeholder="your.email@example.com" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="number-input">Number Input:</label>
+                        <input type="number" id="number-input" placeholder="Enter your age" min="18" max="100" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="file-input">File Upload:</label>
+                        <input type="file" id="file-input" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="range-input">Range Slider: <span id="range-value">50</span>%</label>
+                        <input type="range" id="range-input" min="0" max="100" value="50" class="form-range">
+                    </div>
+                    
+                    <button type="button" id="submit-form-btn" class="submit-btn">Submit Form</button>
+                </div>
+                <p class="output" id="form-output">Fill out the form and click Submit</p>
+            </div>
+        </section>
 
-  <label>Password Input:</label>
-  <input type="password" placeholder="Enter password">
+        <!-- Widget 9: Accordion Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>🎵 9. Accordion Widget</h2>
+                <p class="description">Expandable sections that show/hide content. Great for FAQs, menus, and organizing information.</p>
+            </div>
+            <div class="widget-content">
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>What is HTML?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page semantically and originally included cues for the appearance of the document.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>What is CSS?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML. CSS describes how elements should be rendered on screen, on paper, or in other media.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>What is JavaScript?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is a language that is also characterized as dynamic, weakly typed, prototype-based and multi-paradigm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <label>Email Input:</label>
-  <input type="email" placeholder="Enter email">
+        <!-- Widget 10: Tabs Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>📑 10. Tabs Widget</h2>
+                <p class="description">Switch between different content sections without leaving the page. Useful for organizing related information.</p>
+            </div>
+            <div class="widget-content">
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="profile">Profile</button>
+                        <button class="tab-button" data-tab="experience">Experience</button>
+                        <button class="tab-button" data-tab="education">Education</button>
+                        <button class="tab-button" data-tab="skills">Skills</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-panel active" id="profile">
+                            <h3>Profile Information</h3>
+                            <p><strong>Name:</strong> Sarah Anderson</p>
+                            <p><strong>Title:</strong> Software Engineer</p>
+                            <p><strong>Bio:</strong> Passionate developer with a focus on creating user-friendly web applications. Love working with modern JavaScript frameworks and exploring new technologies.</p>
+                        </div>
+                        
+                        <div class="tab-panel" id="experience">
+                            <h3>Work Experience</h3>
+                            <p><strong>Senior Developer</strong> - Tech Corp (2020-Present)</p>
+                            <p>Lead frontend development team, architected scalable solutions.</p>
+                            <br>
+                            <p><strong>Junior Developer</strong> - StartUp Inc (2018-2020)</p>
+                            <p>Developed responsive web applications using React and Node.js.</p>
+                        </div>
+                        
+                        <div class="tab-panel" id="education">
+                            <h3>Education</h3>
+                            <p><strong>Bachelor of Science in Computer Science</strong></p>
+                            <p>University of Technology (2014-2018)</p>
+                            <p>GPA: 3.8/4.0</p>
+                        </div>
+                        
+                        <div class="tab-panel" id="skills">
+                            <h3>Technical Skills</h3>
+                            <ul>
+                                <li>JavaScript (ES6+), TypeScript</li>
+                                <li>React, Vue.js, Angular</li>
+                                <li>Node.js, Express</li>
+                                <li>HTML5, CSS3, SASS</li>
+                                <li>Git, Docker, AWS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <label>Number Input:</label>
-  <input type="number" placeholder="Enter number">
+        <!-- Widget 11: Carousel Widget -->
+        <section class="widget-section">
+            <div class="widget-header">
+                <h2>🎠 11. Carousel Widget (Image Slider)</h2>
+                <p class="description">Automatically rotating slideshow with manual navigation. Perfect for showcasing products, portfolios, or featured content. Use arrows or dots to navigate, hovers to pause auto-play.</p>
+            </div>
+            <div class="widget-content">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide active">
+                            <div class="carousel-content slide-1">
+                                <div class="slide-text">
+                                    <h3>🚀 Modern Web Development</h3>
+                                    <p>Build stunning, responsive websites with the latest technologies and best practices.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-content slide-2">
+                                <div class="slide-text">
+                                    <h3>💡 Creative Design Solutions</h3>
+                                    <p>Transform your ideas into beautiful, user-friendly interfaces that engage and inspire.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-content slide-3">
+                                <div class="slide-text">
+                                    <h3>📱 Mobile-First Approach</h3>
+                                    <p>Reach your audience on any device with responsive, mobile-optimized experiences.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-content slide-4">
+                                <div class="slide-text">
+                                    <h3>⚡ Performance Optimization</h3>
+                                    <p>Lightning-fast load times and smooth interactions for exceptional user experience.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 5 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-content slide-5">
+                                <div class="slide-text">
+                                    <h3>🎯 Results-Driven Strategy</h3>
+                                    <p>Achieve your goals with data-informed decisions and measurable outcomes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-btn prev-btn" id="prev-btn">❮</button>
+                    <button class="carousel-btn next-btn" id="next-btn">❯</button>
+                    
+                    <!-- Indicator Dots -->
+                    <div class="carousel-indicators" id="carousel-indicators">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                    </div>
+                </div>
+                <p class="output" id="carousel-output">Slide 1 of 5 | Auto-playing (pause on hover)</p>
+            </div>
+        </section>
 
-  <label>Textarea:</label>
-  <textarea placeholder="Enter description"></textarea>
+        <footer>
+            <p>Created with ❤️ for demonstrating interactive UI widgets</p>
+            <p>Perfect for learning web development fundamentals</p>
+        </footer>
+    </div>
 
-  <label>File Upload:</label>
-  <input type="file">
-
-  <label>Range Slider:</label>
-  <input type="range" min="0" max="100" value="50" id="rangeSlider">
-  <span id="rangeValue">50</span>
-
-  <label>Search Box:</label>
-  <input type="search" placeholder="Search here">
-
-</section>
-
-<!-- 9. Action & Button Widgets -->
-<section class="widget">
-  <h2>Action & Button Widgets</h2>
-
-  <!-- Normal Button -->
-  <button class="btn-primary">Click Me</button>
-
-  <!-- Icon Button -->
-  <button class="btn-icon"><span>🔔</span> Notify</button>
-
-  <!-- Toggle Switch -->
-  <label class="switch">
-    <input type="checkbox" id="toggleSwitch">
-    <span class="slider round"></span>
-  </label>
-  <span id="toggleStatus">OFF</span>
-
-  <!-- Submit / Reset Form -->
-  <form id="demoForm">
-    <input type="text" placeholder="Enter something" required>
-    <button type="submit">Submit</button>
-    <button type="reset">Reset</button>
-  </form>
-
-  <!-- Alert / Message Box -->
-  <div id="alertBox" class="alert-box">
-    <span id="alertMessage">This is an alert message!</span>
-    <button id="closeAlert">X</button>
-  </div>
-
-</section>
-
-<script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
