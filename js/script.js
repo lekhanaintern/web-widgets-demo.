@@ -69,21 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const tableOutput = document.getElementById('table-output');
     const tableHeaders = advancedTable.querySelectorAll('th');
     
-    // Get all rows and store original data
     const allTableRows = Array.from(advancedTableBody.querySelectorAll('tr'));
     const totalRows = allTableRows.length;
     
-    // Store current sort state
     let currentSortColumn = null;
     let currentSortDirection = 'asc';
     
-    // ===== SEARCH FUNCTIONALITY =====
     function filterTable() {
         const searchTerm = tableSearchInput.value.toLowerCase().trim();
         let visibleCount = 0;
         
         allTableRows.forEach(row => {
-            // Get all cell text content (including text inside span elements)
             const rowText = row.textContent.toLowerCase();
             
             if (rowText.includes(searchTerm)) {
@@ -94,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Update output message
         updateTableOutput(visibleCount, searchTerm);
     }
     
@@ -108,17 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Add search event listener
     tableSearchInput.addEventListener('input', filterTable);
     
-    
-    // ===== SORT FUNCTIONALITY =====
     function sortTable(column, dataType) {
-        // Get only visible rows (not hidden by search)
         const visibleRows = Array.from(advancedTableBody.querySelectorAll('tr:not(.hidden)'));
         const columnIndex = Array.from(tableHeaders).findIndex(th => th.getAttribute('data-column') === column);
         
-        // Toggle sort direction if clicking same column, otherwise start with ascending
         if (currentSortColumn === column) {
             currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
         } else {
@@ -126,12 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSortColumn = column;
         }
         
-        // Sort the visible rows
         visibleRows.sort((rowA, rowB) => {
             let aValue = rowA.cells[columnIndex].textContent.trim();
             let bValue = rowB.cells[columnIndex].textContent.trim();
             
-            // Handle different data types
             switch(dataType) {
                 case 'number':
                     aValue = parseInt(aValue) || 0;
@@ -150,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
             }
             
-            // Compare values based on sort direction
             if (currentSortDirection === 'asc') {
                 if (dataType === 'number' || dataType === 'currency') {
                     return aValue - bValue;
@@ -166,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Update header styles
         tableHeaders.forEach(th => {
             th.classList.remove('sort-asc', 'sort-desc');
         });
@@ -176,21 +162,12 @@ document.addEventListener('DOMContentLoaded', function() {
             activeHeader.classList.add(currentSortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
         }
         
-        // Re-append rows in sorted order
-        // First, get all hidden rows to preserve them
         const hiddenRows = Array.from(advancedTableBody.querySelectorAll('tr.hidden'));
-        
-        // Clear table body
         advancedTableBody.innerHTML = '';
-        
-        // Append sorted visible rows
         visibleRows.forEach(row => advancedTableBody.appendChild(row));
-        
-        // Append hidden rows at the end
         hiddenRows.forEach(row => advancedTableBody.appendChild(row));
     }
     
-    // Add click event listeners to all headers
     tableHeaders.forEach(header => {
         header.addEventListener('click', function() {
             const column = this.getAttribute('data-column');
@@ -215,18 +192,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     // ===== WIDGET 8: FORM INPUTS =====
-    const userForm = document.getElementById('user-form');
     const rangeInput = document.getElementById('range-input');
     const rangeValue = document.getElementById('range-value');
     const formOutput = document.getElementById('form-output');
     const submitFormBtn = document.getElementById('submit-form-btn');
     
-    // Range slider live update
     rangeInput.addEventListener('input', function() {
         rangeValue.textContent = this.value;
     });
     
-    // Form submission
     submitFormBtn.addEventListener('click', function(e) {
         e.preventDefault();
         
@@ -234,14 +208,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const emailInput = document.getElementById('email-input').value;
         const numberInput = document.getElementById('number-input').value;
         const fileInput = document.getElementById('file-input').files[0];
-        const rangeValue = document.getElementById('range-input').value;
+        const rangeVal = document.getElementById('range-input').value;
         
         let message = 'Form Submitted Successfully!\n';
         if (textInput) message += `Name: ${textInput}\n`;
         if (emailInput) message += `Email: ${emailInput}\n`;
         if (numberInput) message += `Age: ${numberInput}\n`;
         if (fileInput) message += `File: ${fileInput.name}\n`;
-        message += `Proficiency: ${rangeValue}%`;
+        message += `Proficiency: ${rangeVal}%`;
         
         formOutput.textContent = message;
         formOutput.style.whiteSpace = 'pre-line';
@@ -256,12 +230,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const accordionItem = this.parentElement;
             const isActive = accordionItem.classList.contains('active');
             
-            // Close all accordion items
             document.querySelectorAll('.accordion-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Open clicked item if it wasn't already open
             if (!isActive) {
                 accordionItem.classList.add('active');
             }
@@ -277,11 +249,9 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const targetTab = this.getAttribute('data-tab');
             
-            // Remove active class from all buttons and panels
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabPanels.forEach(panel => panel.classList.remove('active'));
             
-            // Add active class to clicked button and corresponding panel
             this.classList.add('active');
             document.getElementById(targetTab).classList.add('active');
         });
@@ -301,79 +271,275 @@ document.addEventListener('DOMContentLoaded', function() {
     let autoPlayInterval;
     let isAutoPlaying = true;
     
-    // Function to show specific slide
     function showSlide(index) {
-        // Remove active class from all slides and dots
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
         
-        // Add active class to current slide and dot
         slides[index].classList.add('active');
         dots[index].classList.add('active');
         
-        // Update output message
         carouselOutput.textContent = `Slide ${index + 1} of ${totalSlides} | ${isAutoPlaying ? 'Auto-playing (pause on hover)' : 'Paused'}`;
     }
     
-    // Function to go to next slide
     function nextSlide() {
         currentSlide = (currentSlide + 1) % totalSlides;
         showSlide(currentSlide);
     }
     
-    // Function to go to previous slide
     function prevSlide() {
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         showSlide(currentSlide);
     }
     
-    // Function to start auto-play
     function startAutoPlay() {
         isAutoPlaying = true;
-        autoPlayInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        autoPlayInterval = setInterval(nextSlide, 3000);
         carouselOutput.textContent = `Slide ${currentSlide + 1} of ${totalSlides} | Auto-playing (pause on hover)`;
     }
     
-    // Function to stop auto-play
     function stopAutoPlay() {
         isAutoPlaying = false;
         clearInterval(autoPlayInterval);
         carouselOutput.textContent = `Slide ${currentSlide + 1} of ${totalSlides} | Paused`;
     }
     
-    // Event listeners for navigation buttons
     prevBtn.addEventListener('click', function() {
         prevSlide();
-        stopAutoPlay(); // Stop auto-play when user manually navigates
+        stopAutoPlay();
     });
     
     nextBtn.addEventListener('click', function() {
         nextSlide();
-        stopAutoPlay(); // Stop auto-play when user manually navigates
+        stopAutoPlay();
     });
     
-    // Event listeners for indicator dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', function() {
             currentSlide = index;
             showSlide(currentSlide);
-            stopAutoPlay(); // Stop auto-play when user clicks a dot
+            stopAutoPlay();
         });
     });
     
-    // Pause auto-play on hover
     carouselContainer.addEventListener('mouseenter', stopAutoPlay);
     carouselContainer.addEventListener('mouseleave', startAutoPlay);
     
-    // Start auto-play on page load
     startAutoPlay();
     
     
-    // ===== INITIALIZE: Add some visual feedback on page load =====
+    // ===== WIDGET 12: FILE DRAG & DROP WIDGET =====
+    const dropZone = document.getElementById('drop-zone');
+    const fileUploadInput = document.getElementById('file-upload-input');
+    const uploadedFilesContainer = document.getElementById('uploaded-files');
+    const fileOutput = document.getElementById('file-output');
+    
+    let uploadedFiles = [];
+    
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    }
+    
+    function getFileIcon(fileName) {
+        const extension = fileName.split('.').pop().toLowerCase();
+        const iconMap = {
+            'pdf': '📄',
+            'doc': '📝', 'docx': '📝',
+            'xls': '📊', 'xlsx': '📊',
+            'ppt': '📽️', 'pptx': '📽️',
+            'jpg': '🖼️', 'jpeg': '🖼️', 'png': '🖼️', 'gif': '🖼️',
+            'mp4': '🎥', 'avi': '🎥', 'mov': '🎥',
+            'mp3': '🎵', 'wav': '🎵',
+            'zip': '🗜️', 'rar': '🗜️',
+            'txt': '📃',
+            'html': '🌐', 'css': '🎨', 'js': '⚙️'
+        };
+        return iconMap[extension] || '📁';
+    }
+    
+    function handleFiles(files) {
+        Array.from(files).forEach(file => {
+            if (!uploadedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                uploadedFiles.push(file);
+            }
+        });
+        displayFiles();
+    }
+    
+    function displayFiles() {
+        uploadedFilesContainer.innerHTML = '';
+        
+        if (uploadedFiles.length === 0) {
+            fileOutput.textContent = 'No files uploaded yet';
+            return;
+        }
+        
+        uploadedFiles.forEach((file, index) => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <span class="file-icon">${getFileIcon(file.name)}</span>
+                    <div class="file-details">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${formatFileSize(file.size)}</div>
+                    </div>
+                </div>
+                <button class="file-remove" data-index="${index}">Remove</button>
+            `;
+            
+            uploadedFilesContainer.appendChild(fileItem);
+        });
+        
+        fileOutput.textContent = `${uploadedFiles.length} file${uploadedFiles.length !== 1 ? 's' : ''} uploaded`;
+        
+        document.querySelectorAll('.file-remove').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                uploadedFiles.splice(index, 1);
+                displayFiles();
+            });
+        });
+    }
+    
+    dropZone.addEventListener('click', () => fileUploadInput.click());
+    
+    fileUploadInput.addEventListener('change', function(e) {
+        handleFiles(this.files);
+    });
+    
+    dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.classList.add('drag-over');
+    });
+    
+    dropZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+    });
+    
+    dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        handleFiles(e.dataTransfer.files);
+    });
+    
+    
+    // ===== WIDGET 13: MULTISELECT DROPDOWN WIDGET =====
+    const multiselectHeader = document.getElementById('multiselect-header');
+    const multiselectDropdown = document.getElementById('multiselect-dropdown');
+    const multiselectPlaceholder = document.getElementById('multiselect-placeholder');
+    const multiselectSearchInput = document.getElementById('multiselect-search-input');
+    const multiselectOptions = document.querySelectorAll('.multiselect-option');
+    const multiselectTagsContainer = document.getElementById('multiselect-tags');
+    const multiselectOutput = document.getElementById('multiselect-output');
+    
+    let selectedLanguages = [];
+    
+    multiselectHeader.addEventListener('click', function() {
+        this.classList.toggle('active');
+        multiselectDropdown.classList.toggle('active');
+        if (multiselectDropdown.classList.contains('active')) {
+            multiselectSearchInput.focus();
+        }
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.multiselect-container')) {
+            multiselectHeader.classList.remove('active');
+            multiselectDropdown.classList.remove('active');
+        }
+    });
+    
+    multiselectSearchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        multiselectOptions.forEach(option => {
+            const text = option.textContent.toLowerCase();
+            if (text.includes(searchTerm)) {
+                option.style.display = 'flex';
+            } else {
+                option.style.display = 'none';
+            }
+        });
+    });
+    
+    function updateMultiselectDisplay() {
+        if (selectedLanguages.length === 0) {
+            multiselectPlaceholder.textContent = 'Select languages...';
+            multiselectPlaceholder.className = 'multiselect-placeholder';
+            multiselectOutput.textContent = 'No languages selected';
+        } else {
+            multiselectPlaceholder.textContent = `${selectedLanguages.length} language${selectedLanguages.length !== 1 ? 's' : ''} selected`;
+            multiselectPlaceholder.className = 'multiselect-selected';
+            multiselectOutput.textContent = `Selected: ${selectedLanguages.join(', ')}`;
+        }
+        
+        multiselectTagsContainer.innerHTML = '';
+        selectedLanguages.forEach(lang => {
+            const tag = document.createElement('div');
+            tag.className = 'multiselect-tag';
+            tag.innerHTML = `
+                ${lang}
+                <button class="tag-remove" data-lang="${lang}">×</button>
+            `;
+            multiselectTagsContainer.appendChild(tag);
+        });
+        
+        document.querySelectorAll('.tag-remove').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const lang = this.getAttribute('data-lang');
+                removeLanguage(lang);
+            });
+        });
+    }
+    
+    function removeLanguage(lang) {
+        selectedLanguages = selectedLanguages.filter(l => l !== lang);
+        
+        multiselectOptions.forEach(option => {
+            if (option.getAttribute('data-value') === lang) {
+                const checkbox = option.querySelector('.multiselect-checkbox');
+                checkbox.checked = false;
+                option.classList.remove('selected');
+            }
+        });
+        
+        updateMultiselectDisplay();
+    }
+    
+    multiselectOptions.forEach(option => {
+        const checkbox = option.querySelector('.multiselect-checkbox');
+        
+        option.addEventListener('click', function(e) {
+            if (e.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+            
+            const value = this.getAttribute('data-value');
+            
+            if (checkbox.checked) {
+                if (!selectedLanguages.includes(value)) {
+                    selectedLanguages.push(value);
+                }
+                this.classList.add('selected');
+            } else {
+                selectedLanguages = selectedLanguages.filter(lang => lang !== value);
+                this.classList.remove('selected');
+            }
+            
+            updateMultiselectDisplay();
+        });
+    });
+    
+    
+    // ===== INITIALIZE =====
     console.log('✅ All widgets loaded successfully!');
-    console.log('📚 11 interactive widgets ready to use');
-    console.log(`📊 Advanced Table: ${totalRows} entries with search & sort`);
-    console.log(`🎠 Carousel: ${totalSlides} slides with auto-play`);
-    console.log('🔍 Search the table and click column headers to sort!');
+    console.log('📚 13 interactive widgets ready to use');
+    console.log('🎨 Featuring: Drag & Drop File Upload and Multiselect Dropdown!');
     
 });
